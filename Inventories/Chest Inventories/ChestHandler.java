@@ -232,13 +232,8 @@ public class ChestHandler implements BlockHandler {
 
 		public ItemStack buildItem() {
 			ItemStack is = ItemStack.builder(Material.fromNamespaceId(id)).amount(Count).meta((itemMetaConsumer) -> {
-				if (tag != null) {
+				if (tag != null) 
 					ItemMetaBuilder.resetMeta(itemMetaConsumer, tag);
-					if (itemMetaConsumer instanceof PotionMeta.Builder potionMetaBuilder) {
-						System.out.println("Got Potion Meta Builder" + potionMetaBuilder + ". Potion: "
-								+ potionMetaBuilder.build().getPotionType());
-					}
-				}
 				return itemMetaConsumer;
 			}).build();
 			return is;
