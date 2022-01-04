@@ -199,14 +199,24 @@ public class ChestHandler implements BlockHandler {
 
 	private class ParsedItemSlot {
 
+		public ParsedItemSlot(int count, int slot, String id, NBTCompound tag) {
+			this.Count = count;
+			this.Slot = slot;
+			this.id = id;
+			this.tag = tag;
+			System.out.println("creating new parsed item slot w/ an NBT tag");
+			System.out.println(tag);
+		}
+
 		public ParsedItemSlot(int count, int slot, String id) {
-			Count = count;
-			Slot = slot;
+			this.Count = count;
+			this.Slot = slot;
 			this.id = id;
 		}
 
 		private int Count, Slot;
 		private String id;
+		private NBTCompound tag = null;
 
 		public int getCount() {
 			return Count;
@@ -221,7 +231,16 @@ public class ChestHandler implements BlockHandler {
 		}
 
 		public ItemStack buildItem() {
-			ItemStack is = ItemStack.builder(Material.fromNamespaceId(id)).amount(Count).build();
+			ItemStack is = ItemStack.builder(Material.fromNamespaceId(id)).amount(Count).meta((itemMetaConsumer) -> {
+				if (tag != null) {
+					ItemMetaBuilder.resetMeta(itemMetaConsumer, tag);
+					if (itemMetaConsumer instanceof PotionMeta.Builder potionMetaBuilder) {
+						System.out.println("Got Potion Meta Builder" + potionMetaBuilder + ". Potion: "
+								+ potionMetaBuilder.build().getPotionType());
+					}
+				}
+				return itemMetaConsumer;
+			}).build();
 			return is;
 		}
 
