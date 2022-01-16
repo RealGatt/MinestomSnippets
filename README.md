@@ -30,8 +30,11 @@ Last Updated: 16/Jan/2022
 
 Includes
 > FireHandler.java
+
 > SignHandler.java
+
 > OpenableHandler.java
+
 > RegisterHandlers.java
 
 Example handlers for different types of blocks.
