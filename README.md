@@ -21,3 +21,17 @@ A custom event that fires whenever a chest is opened for the first time (by some
 > ChestHandler.java
 
 My handler for Chests. Supports Double Chests and Single Chests. Will load existing data from the chests' NBT `Items` tag into the inventory, however- does not handle saving that data in any sorts. 
+
+
+## Block Handlers
+
+### [General Block Handlers](/Block%20Handlers/)
+Last Updated: 16/Jan/2022
+
+Includes
+> FireHandler.java
+> SignHandler.java
+> OpenableHandler.java
+> RegisterHandlers.java
+
+Example handlers for different types of blocks.
